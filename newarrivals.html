@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+  <style>
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card h3, .card p {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            padding: 10px 15px;
+            background-color: #FF4C4C;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        @media (max-width: 1200px) {
+    .card-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+    @media (max-width: 800px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+    @media (max-width: 500px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="Websites.html"><img src="Images/logo-180.png" alt="" height="70" width="150"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="Websites.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="sitemap.html">Site map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contactus.html">Contact Us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="bestseller.html">Best Sellers</a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+              <li><a class="dropdown-item active bg-dark" href="newarrivals.html">New Arrivals</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+                <li><a class="dropdown-item" href="hotdeals.html">Hot Deals</a>
+                </li>
+              <li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Aboutus.html" tabindex="-1" aria-disabled="true">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-dark text-white text-center py-5">
+    <h1>New Arrivals - Spices</h1>
+    <p>Discover our fresh and aromatic spices</p>
+  </header>
+  <br><br>
+  <div class="card-container">
+    <div class="card" onclick="openPopup('popup-1')">
+        <img src="Images/new arrivals1.jpg" alt="Butter Chicken">
+        <h4><b>Fried Fish Masala</b></h4>
+        <p>Click to view details</p>
+    </div>
+    <div class="card" onclick="openPopup('popup-2')">
+        <img src="Images/new arrivals2.jpeg" alt="Butter Chicken">
+        <h4><b>Vegetable Masala</b></h4>
+        <p>Click to view details</p>
+    </div>
+    <div class="card" onclick="openPopup('popup-3')">
+        <img src="Images/new arrivals3.jpg" alt="Butter Chicken">
+        <h4><b>Behari Kabab Masala</b></h4>
+        <p>Click to view details</p>
+    </div>
+    <div class="card" onclick="openPopup('popup-4')">
+        <img src="Images/new arrivals4.jpg" alt="Butter Chicken">
+        <h4><b>Tandoori Tikka Masala</b></h4>
+        <p>Click to view details</p>
+    </div>
+    <div class="card" onclick="openPopup('popup-5')">
+        <img src="Images/new arrivals5.jpg" alt="Butter Chicken">
+        <h4><b>Chicken Masala</b></h4>
+        <p>Click to view details</p>
+    </div>
+    <div class="card" onclick="openPopup('popup-6')">
+        <img src="Images/new arrivals6.jpg" alt="Butter Chicken">
+        <h4><b>Biryani Masala</b></h4>
+        <p>Click to view details</p>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popup-1">
+    <div class="popup">
+        <button class="close-btn" onclick="closePopup('popup-1')">×</button>
+        <img src="Images/new arrivals1.jpg" alt="Butter Chicken">
+        <h3>Fired Fish Masala</h3>
+        <p>Fried Fish Masala is a delicious and aromatic dish made with fresh fish fillets coated in a flavorful blend of spices and herbs, then shallow fried to perfection.</p>
+        <div class="reviews">
+          <div class="star-rating">★★☆☆☆</div>
+          <p>20 Reviews</p>
+      </div>
+      </div>
+</div>
+
+<div class="popup-overlay" id="popup-2">
+    <div class="popup">
+        <button class="close-btn" onclick="closePopup('popup-2')">×</button>
+        <img src="Images/new arrivals2.jpeg" alt="Butter Chicken">
+        <h3>Vegetable Masala</h3>
+        <p>Vegetable Masala is a hearty and flavorful vegetarian dish made with a variety of fresh vegetables simmered in a rich and aromatic masala gravy.</p>
+        <div class="reviews">
+          <div class="star-rating">★★★★☆</div>
+          <p>60 Reviews</p>
+      </div>
+      </div>
+</div>
+
+<div class="popup-overlay" id="popup-3">
+    <div class="popup">
+        <button class="close-btn" onclick="closePopup('popup-3')">×</button>
+        <img src="Images/new arrivals3.jpg" alt="Butter Chicken">
+        <h3>Behari Kabab Masala</h3>
+        <p>Behari Kabab Masala is a rich and flavorful dish originating from the streets of Bihar, India, known for its tender, juicy kebabs cooked in a blend of aromatic spices.</p>
+        <div class="reviews">
+          <div class="star-rating">★★★★☆</div>
+          <p>45 Reviews</p>
+      </div>
+      </div>
+</div>
+
+<div class="popup-overlay" id="popup-4">
+    <div class="popup">
+        <button class="close-btn" onclick="closePopup('popup-4')">×</button>
+        <img src="Images/new arrivals4.jpg" alt="Butter Chicken">
+        <h3>Tandoori Tikka Masala</h3>
+        <p>Tandoori Tikka is a mouthwatering and popular Indian appetizer, featuring succulent pieces of chicken (or other meats) marinated in a flavorful mix of yogurt, aromatic spices, and herbs, then grilled in a traditional tandoor (clay oven) for that authentic smoky flavor. </p>
+        <div class="reviews">
+          <div class="star-rating">★★★★★</div>
+          <p>98 Reviews</p>
+      </div>
+      </div>
+</div>
+
+<div class="popup-overlay" id="popup-5">
+    <div class="popup">
+        <button class="close-btn" onclick="closePopup('popup-5')">×</button>
+        <img src="Images/new arrivals5.jpg" alt="Butter Chicken">
+        <h3>Chicken Masala</h3>
+        <p>Chicken Masala is a hearty, flavorful, and rich Indian curry made with tender pieces of chicken simmered in a luscious blend of spices, tomatoes, onions, and herbs.</p>
+        <div class="reviews">
+          <div class="star-rating">★★★☆☆</div>
+          <p>30 Reviews</p>
+      </div>
+      </div>
+</div>
+
+<div class="popup-overlay" id="popup-6">
+    <div class="popup">
+        <button class="close-btn" onclick="closePopup('popup-6')">×</button>
+        <img src="Images/new arrivals6.jpg" alt="Butter Chicken">
+        <h3>Chicken Biryani Masala</h3>
+        <p>Chicken Biryani is a fragrant and flavorful one-pot rice dish that combines tender pieces of chicken with aromatic basmati rice, infused with a blend of traditional Indian spices.</p>
+        <div class="reviews">
+          <div class="star-rating">★★★★☆</div>
+          <p>50 Reviews</p>
+      </div>
+      </div>
+</div>
+
+<script>
+
+    function openPopup(popupId) {
+        document.getElementById(popupId).style.display = 'flex';
+    }
+
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
+</script>
+<br><br>
+<footer class="bg-dark text-white py-3">
+  <div class="container">
+     <div class="row">
+         <div class="col-md-4 mb-4">
+             <h3 class="h5 mb-3">FLAVORS</h3>
+             <p class="small">We offer a curated selection of premium flavors for the discerning collector<p>
+         </div>
+         <div class="col-md-4">
+             <h3 class="h5">Quick Links</h3>
+             <ul class="list-unstyled small">
+                 <li><a href="" class="text-white text-decoration-none">FAQ</a></li>
+                 <li><a href="" class="text-white text-decoration-none">Shipping & Returns</a></li>
+                 <li><a href="" class="text-white text-decoration-none">Privacy policy</a></li>
+                 <li><a href="" class="text-white text-decoration-none">Terms of Service</a></li>
+             </ul>
+         </div>
+         <div class="col-md-4 mb-4">
+             <h3 class="h5 mb-3">Contact Us</h3>
+             <address class="small">
+                 <p>R-28,Pioneer Fountain II,adjacent to Kaneez Fatima Society, Main University Road, Gulzar e Hijri Scheme 33.,75330</p>
+                 <p>WWW.flavors.com</p>
+                 <P>Phone: +92 122241-66754356</P>
+             </address>
+         </div>
+     </div>
+     <hr>
+     <p class="text-center small mb-0">&copy;2024 FLAVORS. All rights reserved.</p>
+  </div>
+ </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
